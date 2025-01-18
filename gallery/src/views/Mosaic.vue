@@ -81,6 +81,13 @@ async function handleFileUpload(event: Event) {
     }
   }
 }
+function triggerFileUpload() {
+  const fileInput = document.getElementById(
+    "hiddenFileInput"
+  ) as HTMLInputElement;
+  if (fileInput) fileInput.click(); // Programmatically trigger the file input
+}
+const imageText = ref(""); // Bind to the text entry box
 </script>
 
 <template>
@@ -104,7 +111,15 @@ async function handleFileUpload(event: Event) {
     </div>
     <div class="right-side-con">
       <div class="right-center">
-        <div class="generate">Generate Image</div>
+        <div class="createcon">
+          <input
+            type="text"
+            placeholder="Enter text here"
+            class="text-entry"
+            v-model="imageText"
+          />
+          <div class="generate">Generate Image</div>
+        </div>
         <img class="mosaicpicture" src="https://placehold.co/600x600" />
         <div class="bottom-buttons">
           <div class="collab">Collaborate</div>
@@ -116,6 +131,14 @@ async function handleFileUpload(event: Event) {
 </template>
 
 <style>
+.text-entry {
+  width: 50%;
+  height: 46px;
+}
+.hidden-file-input {
+  display: none; /* Hide the input element */
+  cursor: pointer;
+}
 .outer-con {
   display: flex;
   gap: 10px;
@@ -182,6 +205,22 @@ async function handleFileUpload(event: Event) {
   margin-top: 50px;
   border: 1px solid white;
   padding: 10px;
+  width: 50%;
+}
+
+.createcon {
+  display: flex;
+  align-items: end;
+  flex: auto;
+}
+
+.uploadfile {
+  width: 50%;
+  border-top: 1px solid white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  padding: 10px;
+  cursor: pointer;
 }
 
 .right-side-con {
